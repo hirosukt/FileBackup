@@ -8,9 +8,9 @@ import kotlin.system.measureTimeMillis
 
 object SaveFiles {
 
-    private fun backupAllFiles() {
+    fun backupAllFiles() {
         PathData.paths.forEach {
-            val dest = FileOutputStream("/backup/${it.substringAfterLast("/")}.tar")
+            val dest = FileOutputStream("${PathData.backupFolder.path}${it.substringAfterLast("/")}.tar")
             val out = TarOutputStream(BufferedOutputStream(dest))
 
             val filesToTar = mutableListOf<File>()
@@ -34,7 +34,7 @@ object SaveFiles {
         }
     }
 
-    fun backupWhenDayChange() {
+    fun backupWhenDayChanged() {
         if (DateChecker.isDayChanged()) {
             val time = measureTimeMillis {
                 backupAllFiles()
