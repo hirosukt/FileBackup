@@ -1,0 +1,4 @@
+path: []
+backupFolder: "/backup/"
+backupOnStart: false
+checkDateInterval: 60

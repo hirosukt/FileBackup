@@ -1,0 +1,8 @@
+name: FileBackup
+version: '${version}'
+main: works.hirosuke.filebackup.FileBackup
+api-version: 1.16
+prefix: Zip
+authors: [ Hirosuke ]
+description: Zipping specify directories.
+website: hirosuke.works
