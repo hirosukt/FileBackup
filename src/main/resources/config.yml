@@ -1,4 +1,5 @@
-path: []
+path:
+  - "/world/"
 backupFolder: "/backup/"
 backupOnStart: false
 checkDateInterval: 60
