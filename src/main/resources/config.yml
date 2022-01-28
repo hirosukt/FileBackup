@@ -1,6 +1,6 @@
 path:
-  - "/world/"
-backupFolder: "/backup/"
+  - "./world/"
+backupFolder: "./backup/"
 backupOnStart: false
 backupOnEnd: false
 checkDateInterval: 60
