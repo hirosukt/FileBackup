@@ -4,6 +4,6 @@ import java.io.File
 
 object PathData {
 
-    val backupFolder = File(FileBackup().config.getString(ConfigItems.BACKUP_FOLDER.path) ?: "/backup/")
+    var backupFolder = File("./backup/")
     val paths = mutableListOf<String>()
 }

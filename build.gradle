@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.kamranzafar:jtar:2.3'
+    implementation 'org.apache.commons:commons-compress:1.21'
     compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }

@@ -1,5 +1,6 @@
 package works.hirosuke.filebackup
 
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
@@ -10,5 +11,9 @@ object DateChecker {
 
     fun isDayChanged(): Boolean {
         return today != Date().time.days
+    }
+
+    fun getFormattedDate(): String {
+        return SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(Date())
     }
 }

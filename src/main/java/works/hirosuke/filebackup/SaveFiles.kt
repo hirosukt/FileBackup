@@ -1,8 +1,14 @@
 package works.hirosuke.filebackup
 
-import org.kamranzafar.jtar.TarEntry
-import org.kamranzafar.jtar.TarOutputStream
-import java.io.*
+import org.apache.commons.compress.archivers.tar.TarArchiveOutputStream
+import org.apache.commons.compress.compressors.gzip.GzipCompressorOutputStream
+import org.apache.commons.compress.utils.IOUtils
+import works.hirosuke.filebackup.FileBackup.Companion.plugin
+import java.io.IOException
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.Paths
+import kotlin.io.path.name
 import kotlin.system.measureTimeMillis
 
 
@@ -10,27 +16,28 @@ object SaveFiles {
 
     fun backupAllFiles() {
         PathData.paths.forEach {
-            val dest = FileOutputStream("${PathData.backupFolder.path}${it.substringAfterLast("/")}.tar")
-            val out = TarOutputStream(BufferedOutputStream(dest))
+            val file = Paths.get(it)
+            val dest = Paths.get("./${PathData.backupFolder.path}/${file.name}_${DateChecker.getFormattedDate()}.tar.gz")
 
-            val filesToTar = mutableListOf<File>()
-            File(it).listFiles().forEach { file ->
-                filesToTar.add(file)
-            }
-
-            filesToTar.forEach { file ->
-                out.putNextEntry(TarEntry(file, file.name))
-                val origin = BufferedInputStream(FileInputStream(file))
-                var count: Int
-                val data = ByteArray(2048)
-                while (origin.read(data).also { read -> count = read } != -1) {
-                    out.write(data, 0, count)
+            Files.newOutputStream(dest).use { fo ->
+                GzipCompressorOutputStream(fo).use { gzo ->
+                    TarArchiveOutputStream(gzo).use { out ->
+                        Files.walk(file).use { stream ->
+                            stream.forEach { p: Path ->
+                                try {
+                                    val entry = out.createArchiveEntry(p.toFile(), p.subpath(file.nameCount - 1, p.nameCount).toString())
+                                    out.putArchiveEntry(entry)
+                                    if (p.toFile().isFile) Files.newInputStream(p).use { i -> IOUtils.copy(i, out) }
+                                    out.closeArchiveEntry()
+                                } catch (e: IOException) {
+                                    throw RuntimeException(e)
+                                }
+                            }
+                            out.finish()
+                        }
+                    }
                 }
-                out.flush()
-                origin.close()
             }
-
-            out.close()
         }
     }
 
@@ -39,7 +46,7 @@ object SaveFiles {
             val time = measureTimeMillis {
                 backupAllFiles()
             }
-            FileBackup().logger.info("Files was backuped in ${time / 1000.0}s.")
+            plugin.logger.info("Files was backuped in ${time / 1000.0}s.")
         }
     }
 }
