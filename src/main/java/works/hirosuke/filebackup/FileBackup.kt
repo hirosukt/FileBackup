@@ -31,6 +31,6 @@ class FileBackup: JavaPlugin() {
     }
 
     override fun onDisable() {
-
+        if (config.getBoolean(ConfigItems.BACKUP_ON_END.path)) SaveFiles.backupAllFiles()
     }
 }
