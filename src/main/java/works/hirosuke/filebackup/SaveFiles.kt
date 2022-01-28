@@ -8,8 +8,10 @@ import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
+import java.util.*
 import kotlin.io.path.name
 import kotlin.system.measureTimeMillis
+import kotlin.time.Duration.Companion.days
 
 
 object SaveFiles {
@@ -46,6 +48,7 @@ object SaveFiles {
             val time = measureTimeMillis {
                 backupAllFiles()
             }
+            DateChecker.today = Date().time.days
             plugin.logger.info("Files was backuped in ${time / 1000.0}s.")
         }
     }
