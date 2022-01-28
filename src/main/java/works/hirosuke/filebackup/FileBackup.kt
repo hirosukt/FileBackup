@@ -25,7 +25,7 @@ class FileBackup: JavaPlugin() {
         if (!PathData.backupFolder.isDirectory) PathData.backupFolder.mkdir()
         if (config.getBoolean(ConfigItems.BACKUP_ON_START.path)) SaveFiles.backupAllFiles()
 
-        runTaskTimer(0, (config.getInt(ConfigItems.CHECK_DATE_INTERVAL.path) * 60).toLong()) {
+        runTaskTimer(0, (config.getInt(ConfigItems.CHECK_DATE_INTERVAL.path) * 1200).toLong()) {
             SaveFiles.backupWhenDayChanged()
         }
     }
