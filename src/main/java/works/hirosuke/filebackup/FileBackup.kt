@@ -20,7 +20,7 @@ class FileBackup: JavaPlugin() {
         saveResource("config.yml", false)
         DateChecker.today = Date().time.days
         PathData.backupFolder = File(config.getString(ConfigItems.BACKUP_FOLDER.path) ?: "./backup/")
-        config.getStringList("path").forEach { PathData.paths.add(it) }
+        config.getStringList(ConfigItems.PATHS.path).forEach { PathData.paths.add(it) }
 
         if (!PathData.backupFolder.isDirectory) PathData.backupFolder.mkdir()
         if (config.getBoolean(ConfigItems.BACKUP_ON_START.path)) SaveFiles.backupAllFiles()
