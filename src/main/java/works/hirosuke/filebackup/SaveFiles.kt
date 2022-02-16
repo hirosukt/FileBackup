@@ -49,7 +49,7 @@ object SaveFiles {
                 backupAllFiles()
             }
             DateChecker.today = Date().time.days
-            plugin.logger.info("Files was backuped in ${time / 1000.0}s.")
+            plugin.logger.info("Files was saved in ${time / 1000.0}s.")
         }
     }
 }

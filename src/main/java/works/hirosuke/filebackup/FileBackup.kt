@@ -1,6 +1,7 @@
 package works.hirosuke.filebackup
 
 import org.bukkit.plugin.java.JavaPlugin
+import works.hirosuke.filebackup.utils.runTaskLater
 import works.hirosuke.filebackup.utils.runTaskTimer
 import java.io.File
 import java.util.*
@@ -28,6 +29,7 @@ class FileBackup: JavaPlugin() {
         runTaskTimer(0, (config.getInt(ConfigItems.CHECK_DATE_INTERVAL.path) * 1200).toLong()) {
             SaveFiles.backupWhenDayChanged()
         }
+        logger.info("Schedular started succesfully.")
     }
 
     override fun onDisable() {

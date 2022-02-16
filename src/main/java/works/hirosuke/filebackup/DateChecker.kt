@@ -10,7 +10,7 @@ object DateChecker {
     var today: Duration = Duration.ZERO
 
     fun isDayChanged(): Boolean {
-        return today != Date().time.days
+        return Date().time.days != today
     }
 
     fun getFormattedDate(): String {
