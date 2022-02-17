@@ -19,6 +19,7 @@ class FileBackup: JavaPlugin() {
 
     override fun onEnable() {
         saveResource("config.yml", false)
+        config.options().copyDefaults(true)
         PathData.backupFolder = File(config.getString(ConfigItems.BACKUP_FOLDER.path) ?: "./backup/")
         config.getStringList(ConfigItems.PATHS.path).forEach { PathData.paths.add(it) }
 
