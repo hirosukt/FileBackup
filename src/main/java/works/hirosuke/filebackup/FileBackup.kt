@@ -19,7 +19,6 @@ class FileBackup: JavaPlugin() {
 
     override fun onEnable() {
         saveResource("config.yml", false)
-        DateChecker.today = Date().time.days
         PathData.backupFolder = File(config.getString(ConfigItems.BACKUP_FOLDER.path) ?: "./backup/")
         config.getStringList(ConfigItems.PATHS.path).forEach { PathData.paths.add(it) }
 
@@ -27,7 +26,7 @@ class FileBackup: JavaPlugin() {
         if (config.getBoolean(ConfigItems.BACKUP_ON_START.path)) SaveFiles.backupAllFiles()
 
         runTaskTimer(0, (config.getInt(ConfigItems.CHECK_DATE_INTERVAL.path) * 1200).toLong()) {
-            SaveFiles.backupWhenDayChanged()
+            SaveFiles.backupWithMessage()
         }
         logger.info("Schedular started succesfully.")
     }

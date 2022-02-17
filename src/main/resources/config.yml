@@ -3,4 +3,4 @@ path:
 backupFolder: "./backup/"
 backupOnStart: false
 backupOnEnd: false
-checkDateInterval: 60
+saveInterval: 60

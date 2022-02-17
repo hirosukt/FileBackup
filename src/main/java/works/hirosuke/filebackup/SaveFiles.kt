@@ -8,6 +8,7 @@ import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.io.path.name
 import kotlin.system.measureTimeMillis
@@ -19,7 +20,7 @@ object SaveFiles {
     fun backupAllFiles() {
         PathData.paths.forEach {
             val file = Paths.get(it)
-            val dest = Paths.get("./${PathData.backupFolder.path}/${file.name}_${DateChecker.getFormattedDate()}.tar.gz")
+            val dest = Paths.get("./${PathData.backupFolder.path}/${file.name}_${SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(Date())}.tar.gz")
 
             Files.newOutputStream(dest).use { fo ->
                 GzipCompressorOutputStream(fo).use { gzo ->
@@ -43,14 +44,10 @@ object SaveFiles {
         }
     }
 
-    fun backupWhenDayChanged() {
-        if (DateChecker.isDayChanged()) {
-            val time = measureTimeMillis {
-                backupAllFiles()
-            }
-            DateChecker.today = Date().time.days
-            plugin.logger.info("Files was saved in ${time / 1000.0}s.")
+    fun backupWithMessage() {
+        val time = measureTimeMillis {
+            backupAllFiles()
         }
-        plugin.logger.info("Data checked")
+        plugin.logger.info("Files was saved in ${time / 1000.0}s.")
     }
 }
