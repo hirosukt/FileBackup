@@ -5,6 +5,7 @@ enum class ConfigItems(val path: String) {
     BACKUP_FOLDER("backupFolder"),
     BACKUP_ON_START("backupOnStart"),
     BACKUP_ON_END("backupOnEnd"),
-    CHECK_DATE_INTERVAL("saveInterval")
+    CHECK_DATE_INTERVAL("saveInterval"),
+    VERBOSE("verbose")
     ;
 }
