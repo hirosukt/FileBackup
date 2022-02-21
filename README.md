@@ -14,5 +14,8 @@
 * `backupOnEnd`  
 サーバー終了時にバックアップを保存するか
 
-* `checkDateInterval`  
+* `saveInterval`  
 バックアップする間隔(分)
+
+* `verbose`
+細かいログまで表示するか
