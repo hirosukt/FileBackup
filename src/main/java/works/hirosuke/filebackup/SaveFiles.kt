@@ -65,7 +65,7 @@ object SaveFiles {
 
     private fun deleteOldFiles(target: String) {
         val dest = Paths.get(PathData.backupFolder.path)
-        Files.walk(dest).skip(1).filter { it.name.contains(target.substringBeforeLast('/').substringAfterLast('/').replace("/", "").replace(".", "")) }.forEach {
+        Files.walk(dest).skip(1).filter { it.name.contains(target.substringBeforeLast('/').substringAfterLast('/')) }.forEach {
             it.deleteIfExists()
         }
     }
