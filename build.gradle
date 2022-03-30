@@ -26,7 +26,7 @@ dependencies {
     implementation 'org.apache.commons:commons-compress:1.21'
     compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    ktlint 'com.pinterest:ktlint:0.43.2'
+    ktlint 'com.pinterest:ktlint:0.45.1'
 }
 
 task ktlint(type: JavaExec, group: "verification") {

@@ -5,3 +5,4 @@ backupOnStart: false
 backupOnEnd: false
 saveInterval: 60
 verbose: false
+deleteOldFiles: true
