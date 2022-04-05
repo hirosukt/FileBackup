@@ -19,3 +19,6 @@
 
 * `verbose`
 細かいログまで表示するか
+
+* `deleteOldFiles`
+古いファイルを削除するか
