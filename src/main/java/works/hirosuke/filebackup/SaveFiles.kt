@@ -5,13 +5,11 @@ import org.apache.commons.compress.archivers.tar.TarArchiveOutputStream
 import org.apache.commons.compress.compressors.gzip.GzipCompressorOutputStream
 import org.apache.commons.compress.utils.IOUtils
 import works.hirosuke.filebackup.FileBackup.Companion.plugin
-import java.io.File
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.io.path.deleteExisting
 import kotlin.io.path.deleteIfExists
 import kotlin.io.path.name
 import kotlin.system.measureTimeMillis
@@ -47,7 +45,7 @@ object SaveFiles {
                         }
                     }
                     if (plugin.config.getBoolean(ConfigItems.VERBOSE.path)) {
-                        plugin.logger.info(ChatColor.DARK_GRAY.toString() + "$p archived in ${ChatColor.BLUE}${time / 1000.0}s")
+                        plugin.logger.info("${ChatColor.DARK_GRAY}$p archived in ${ChatColor.BLUE}${time / 1000.0}s")
                     }
                 }
                 tar.finish()
@@ -60,7 +58,7 @@ object SaveFiles {
         val time = measureTimeMillis {
             backupAllFiles()
         }
-        plugin.logger.info("§aAll files was saved in §9${time / 1000.0}s.")
+        plugin.logger.info("${ChatColor.RED}All files was saved in ${ChatColor.BLUE}${time / 1000.0}s.")
     }
 
     private fun deleteOldFiles(target: String) {
