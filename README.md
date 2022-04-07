@@ -17,5 +17,8 @@
 * `saveInterval`  
 バックアップする間隔(分)
 
-* `verbose`
+* `verbose`  
 細かいログまで表示するか
+
+* `deleteOldFiles`  
+古いファイルを削除するか
