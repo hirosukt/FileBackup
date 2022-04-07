@@ -45,12 +45,12 @@ object SaveFiles {
                         }
                     }
                     if (plugin.config.getBoolean(ConfigItems.VERBOSE.path)) {
-                        plugin.logger.info("${ChatColor.DARK_GRAY}$p archived in ${ChatColor.BLUE}${time / 1000.0}s")
+                        plugin.logger.info("$p archived in ${time / 1000.0}s")
                     }
                 }
                 tar.finish()
             }
-            plugin.logger.info(ChatColor.GOLD.toString() + "$it§a was saved in ${ChatColor.BLUE}${time / 1000.0}s.")
+            plugin.logger.info("$it was saved in ${time / 1000.0}s.")
         }
     }
 
@@ -58,7 +58,7 @@ object SaveFiles {
         val time = measureTimeMillis {
             backupAllFiles()
         }
-        plugin.logger.info("${ChatColor.RED}All files was saved in ${ChatColor.BLUE}${time / 1000.0}s.")
+        plugin.logger.info("All files was saved in ${time / 1000.0}s.")
     }
 
     private fun deleteOldFiles(target: String) {
