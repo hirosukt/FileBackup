@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.6.10'
+    id 'org.jetbrains.kotlin.jvm' version '1.6.20'
 }
 
 group = 'works.hirosuke'
@@ -26,26 +26,26 @@ dependencies {
     implementation 'org.apache.commons:commons-compress:1.21'
     compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    ktlint 'com.pinterest:ktlint:0.45.1'
+    ktlint 'com.github.shyiko:ktlint:0.31.0'
 }
 
 task ktlint(type: JavaExec, group: "verification") {
     ignoreExitValue true
     description = "Check Kotlin code style."
     classpath = configurations.ktlint
-    main = "com.pinterest.ktlint.Main"
+    main = "com.github.shyiko.ktlint.Main"
     args "src/**/*.kt"
 }
+
+check.dependsOn ktlint
 
 task ktlintFormat(type: JavaExec, group: "formatting") {
     ignoreExitValue true
     description = "Fix Kotlin code style deviations."
     classpath = configurations.ktlint
-    main = "com.pinterest.ktlint.Main"
+    main = "com.github.shyiko.ktlint.Main"
     args "-F", "src/**/*.kt"
 }
-
-check.dependsOn ktlint
 
 def targetJavaVersion = 8
 java {
