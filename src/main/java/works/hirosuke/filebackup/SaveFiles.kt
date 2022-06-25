@@ -1,6 +1,5 @@
 package works.hirosuke.filebackup
 
-import net.md_5.bungee.api.ChatColor
 import org.apache.commons.compress.archivers.tar.TarArchiveOutputStream
 import org.apache.commons.compress.compressors.gzip.GzipCompressorOutputStream
 import org.apache.commons.compress.utils.IOUtils
