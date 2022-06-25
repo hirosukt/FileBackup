@@ -13,7 +13,6 @@ import kotlin.io.path.deleteIfExists
 import kotlin.io.path.name
 import kotlin.system.measureTimeMillis
 
-
 object SaveFiles {
 
     fun backupAllFiles() {

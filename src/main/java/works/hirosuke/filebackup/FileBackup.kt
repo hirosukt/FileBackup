@@ -1,14 +1,11 @@
 package works.hirosuke.filebackup
 
 import org.bukkit.plugin.java.JavaPlugin
-import works.hirosuke.filebackup.utils.runTaskLater
-import works.hirosuke.filebackup.utils.runTaskTimer
 import works.hirosuke.filebackup.utils.runTaskTimerAsync
 import java.io.File
 import java.util.*
-import kotlin.time.Duration.Companion.days
 
-class FileBackup: JavaPlugin() {
+class FileBackup : JavaPlugin() {
 
     companion object {
         lateinit var plugin: JavaPlugin
